@@ -1,0 +1,35 @@
+﻿@using Business
+@using Entities
+
+<h2>Listado de Categorias</h2>
+<hr />
+
+<a href="category/create" class="btn btn-primary">Crear Categoria</a>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Siglas</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in oCategory)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<CategoryEntity> oCategory = new List<CategoryEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oCategory = B_Category.CategoryList();
+    }
+
+}

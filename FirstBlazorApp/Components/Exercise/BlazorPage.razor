@@ -1,0 +1,33 @@
+﻿@page "/Ejercicio"
+
+<div>
+    <input type="text" @bind-value="@message" />
+    <p>@message</p>
+
+    <input type="text" @bind:event="oninput" @bind="message2" />
+    <p>@message2</p>
+
+    <input type="button" value="Cambiar valores" onclick="ChangeValues()" />
+</div>
+
+
+<hr />
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+
+    string message = "";
+    string message2 = "";
+
+    protected override async Task<string> OnInitializedAsync()
+    {
+        return message = Message;
+    }
+
+    private void ChangeValues()
+    {
+        message = message2;
+    }
+}
